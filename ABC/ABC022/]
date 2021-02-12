@@ -1,0 +1,64 @@
+#include <bits/stdc++.h>
+#define rep(i, n) for(long long i = 0; i < (n); i++) 
+#define INF 100010
+using namespace std;
+
+signed main(void)
+{
+	long long n, m; cin >> n >> m;
+	long long graph[n][n];
+	long long ans, tmp;
+	
+	rep(i, n) rep(j, n) graph[i][j] = INF;
+	rep(i, m)
+	{
+		long long a, b, c;
+		cin >> a >> b >> c;
+		a--; b--;
+		graph[a][b] = c;
+		graph[b][a] = c;
+	}
+	rep(i, n) graph[i][i] = 0;
+	for(int k = 1; k < n; k++)
+		for(int i = 1; i < n; i++)
+			for(int j = 1; j < n; j++)
+				graph[i][j] = min(graph[i][j], graph[i][k] + graph[k][j]);
+	int sum[n];
+	for(int i = 1; i < n; i++)
+	{
+		sum[i] = 0;
+		for(int j = 1; j < n; j++)
+		{
+			if (i != j && dp[i][j] != INF)
+				sum += dp[i][j];
+		}
+	}
+	int ans_i = 1;
+	for(int i = 2; i < n; i++)
+	{
+		if (sum[i] < sum[ans_i] && sum[i] != 0)
+			ans_i = i;
+	}
+	cout << "sum : " << sum[ans_i] << endl;
+	tmp = 0;
+	for(int j = 2; j < n; j++)
+	{
+		if(tmp < graph[1][j]) tmp = graph[1][j];
+	}
+	cout << "tmp : " << tmp << endl;
+	ans = INF;
+	for (long long i = 1; i < n - 1; i++)
+	{
+		for (long long j = i + 1; j < n; j++)
+		{
+			if (graph[0][i] == INF || graph[0][j] == INF)
+				continue;
+			if (ans > tmp + graph[0][i] + graph[0][j])
+				ans = tmp + graph[0][i] + graph[0][j];
+		}
+	}
+	if (ans >= INF)
+		ans = -1;
+	cout << ans << endl;
+	return 0;
+}

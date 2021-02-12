@@ -1,0 +1,28 @@
+#include <bits/stdc++.h>
+#define rep(i, n) for(int i = 0; i < (n); i++)
+using namespace std;
+
+signed main(void)
+{
+	int n, maxi, mini;
+	string s;
+	map<int, int> mp;
+	cin >> n >> s;
+	mp[1]=0;
+	mp[2]=0;
+	mp[3]=0;
+	mp[4]=0;
+	rep(i, n)
+	{
+		mp[s[i]]++;
+	}
+	maxi = 0;
+	mini = 1e9;
+	for(auto p: mp)
+	{
+		maxi = max(p.second, maxi);
+		mini = min(p.second, mini);
+	}
+	cout << maxi << " " << mini << endl;
+	return 0;
+}
