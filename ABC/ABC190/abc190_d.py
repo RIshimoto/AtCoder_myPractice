@@ -1,13 +1,13 @@
 import math
 N = int(input())
 
-cnt = 0
-n = int((2 * N) ** 0.5)
-for i in range(1, n + 1):
-	if 2 * N % i == 0:
-		j = 2 * N // i
-		if i % 2 == 0 and j % 2 != 0: 
-			cnt += 2
-		elif i % 2 != 0 and j % 2 == 0:
-			cnt += 2
-print(cnt)
+N2 = N * 2
+ans = 0
+sqn = int(N2 ** 0.5)
+for a in range(1, sqn+1):
+    if N2 % a == 0:
+        b = N2 // a
+        if (a - b + 1) % 2 == 0 and (a + b - 1) % 2 == 0:
+            ans += 2
+print(ans)
+
