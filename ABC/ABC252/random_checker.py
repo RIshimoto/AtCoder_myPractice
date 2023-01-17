@@ -1,33 +1,31 @@
 def random_generator():
     import random
-    V = random.randint(2, 10)
-    E = random.randint(N-1, N*(N-1)//2)
-    stw = []
-    for _ in range(E):
-        s
-        stw.append(())
-    pass
+    L = random.randint(1, 100)
+    k = L
+    A = []
+    while k > 0:
+        x = random.randint(1, k)
+        A.append(x)
+        k -= x
+    return len(A), L, A
 
-def solve_Jury(**):
-    pass
-
-def result(**):
-    pass
+def solve_Jury(N, L, A):
+    return -1
 
 if __name__ == '__main__':
-    from abc252_e import solve
+    from abc252_f import solve
 
     for t in range(1001):
-        ** = random_generator()
-        J1 = solve(**)
-        J2 = solve_Jury(**)
-        J1_result = result(**)
-        J2_result = result(**)
-        if J1_result != J2_result :
+        N, L, A = random_generator()
+        J1 = solve(N, L, A)
+        J2 = solve_Jury(N, L, A)
+        if J1 != J2:
             print("Wrong Answer on Test #", t)
             print("Jury = ", J2, ", Output = ", J1)
-            print("Jury Result = ", J2_result, ", Your Result = ", J1_result)
-            print(*)
-            print(**)
+            print(N, L)
+            print(*A)
+            with open("testcase", mode="w") as f: 
+                f.write("{} {}\n".format(N, L))
+                f.write("{}\n".format(*A))
             exit()
     print("Yey!")
